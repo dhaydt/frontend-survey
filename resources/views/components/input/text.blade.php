@@ -11,21 +11,27 @@
     <label for="exampleInputEmail1" class="form-label {{ $required == 1 ? 'required' : '' }}">{{ $no }}. {{ $question ?? '' }}</label>
 
     @if ($image)
+    @php
+        $image = \App\CPU\Helpers::backendUrl() . '/' . $image;
+    @endphp
     <div class="d-block img-question">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 text-center">
-                <img src="{{ asset($image) }}" alt="image_{{ $question }}">
+                <img src="{{ $image }}" alt="image_{{ $question }}">
             </div>
         </div>
     </div>
     @endif
 
     @if ($audio)
+    @php
+        $audio = \App\CPU\Helpers::backendUrl() . '/' . $audio;
+    @endphp
     <div class="d-block img-question">
         <div class="row justify-content-center">
             <div class="col-12 col-md-8 text-center">
                 <audio controls autoplay>
-                    <source src="{{ asset($audio) }}" type="audio/mpeg">
+                    <source src="{{ $audio }}" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
             </div>

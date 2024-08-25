@@ -18,6 +18,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'backend_url' => env('BACKEND_URL', 'https://office.kliksurvei.com'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

@@ -12,6 +12,9 @@ use DateTime;
 
 class Helpers
 {
+    public static function backendUrl() {
+        return config('app.backend_url');
+    }
     public static function validateDate($date, $format = 'Y-m-d')
     {
         $d = DateTime::createFromFormat($format, $date);
