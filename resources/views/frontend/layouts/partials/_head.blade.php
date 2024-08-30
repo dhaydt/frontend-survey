@@ -105,9 +105,10 @@
     }
 
     .stepper{
-        position: -webkit-sticky; /* Safari */
-        position: sticky;
+        position: sticky !important;
         top: 0;
+        left: 0;
+        right: 0;
         z-index: 999;
     }
 

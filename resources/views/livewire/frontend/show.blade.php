@@ -1,47 +1,65 @@
 <div>
-    <div class="">
+    <div class="card card-body shadow-sm stepper">
+        <x-survey-header name="{{ $survey['name'] }}" description="{{ $survey['description'] }}"></x-survey-header>
 
-        <div class="card card-body shadow-sm stepper">
-            <x-survey-header name="{{ $survey['name'] }}" description="{{ $survey['description'] }}"></x-survey-header>
+        <div class="header-hr"></div>
 
-            <div class="header-hr"></div>
-
-            @if(!empty($successMessage))
-            <div class="alert alert-success">
-                {{ $successMessage }}
-            </div>
-            @endif
-            <div class="stepwizard">
-                <div class="stepwizard-row setup-panel row">
-                    <div class="stepwizard-step col-2">
-                        <a href="#step-1" type="button"
-                            class="btn btn-circle {{ $currentStep != 1 ? 'btn-secondary-fill' : 'btn-primary-fill' }}">1</a>
-                        <p>Isi Formulir</p>
-                    </div>
-                    <div class="stepwizard-step col-4">
-                        <a href="#step-2" type="button"
-                            class="btn btn-circle {{ $currentStep != 2 ? 'btn-secondary-fill' : 'btn-primary-fill' }}">2</a>
-                        <p>Data Responden</p>
-                    </div>
-                    <div class="stepwizard-step col-2">
-                        <a href="#step-3" type="button"
-                            class="btn btn-circle {{ $currentStep != 3 ? 'btn-secondary-fill' : 'btn-primary-fill' }}"
-                            disabled="disabled">3</a>
-                        <p>Selesai</p>
-                    </div>
+        @if(!empty($successMessage))
+        <div class="alert alert-success">
+            {{ $successMessage }}
+        </div>
+        @endif
+        <div class="stepwizard">
+            <div class="stepwizard-row setup-panel row">
+                <div class="stepwizard-step col-2">
+                    <a href="#step-1" type="button"
+                        class="btn btn-circle {{ $currentStep != 1 ? 'btn-secondary-fill' : 'btn-primary-fill' }}">1</a>
+                    <p>Isi Formulir</p>
+                </div>
+                <div class="stepwizard-step col-4">
+                    <a href="#step-2" type="button"
+                        class="btn btn-circle {{ $currentStep != 2 ? 'btn-secondary-fill' : 'btn-primary-fill' }}">2</a>
+                    <p>Data Responden</p>
+                </div>
+                <div class="stepwizard-step col-2">
+                    <a href="#step-3" type="button"
+                        class="btn btn-circle {{ $currentStep != 3 ? 'btn-secondary-fill' : 'btn-primary-fill' }}"
+                        disabled="disabled">3</a>
+                    <p>Selesai</p>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row setup-content px-5 {{ $currentStep != 1 ? 'displayNone' : '' }}" id="step-1">
-            <div class="col-xs-12">
-                <div class="col-md-12 pt-2">
+    <div class="row setup-content px-5 {{ $currentStep != 1 ? 'displayNone' : '' }}" id="step-1">
+        <div class="col-xs-12">
+            <div class="col-md-12 pt-2">
 
-                    @include('livewire.frontend.partials.form')
+                @include('livewire.frontend.partials.form')
 
+                <button
+                    class="btn btn-primary-next mt-2 nextBtn pull-right d-flex justify-content-center align-items-center"
+                    wire:click="firstStepSubmit" type="button">
+                    <span>
+                        Selanjutnya
+                    </span>
+                    <i class="fa-solid fa-arrow-right mt-1 ms-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row setup-content px-5 {{ $currentStep != 2 ? 'displayNone' : '' }}" id="step-2">
+        <div class="col-xs-12 mt-3">
+            <div class="col-md-12">
+                @include('livewire.frontend.data_diri')
+                <div class="d-flex mt-4">
+                    <button class="btn btn-danger nextBtn pull-right my-0 me-3" type="button" wire:click="back(1)">
+                        <i class="fa-solid fa-arrow-left me-2"></i>
+                        <span>Sebelumnya</span>
+                    </button>
                     <button
-                        class="btn btn-primary-next mt-2 nextBtn pull-right d-flex justify-content-center align-items-center"
-                        wire:click="firstStepSubmit" type="button">
+                        class="btn btn-primary-next nextBtn pull-right d-flex justify-content-center align-items-center"
+                        type="button" wire:click="secondStepSubmit">
                         <span>
                             Selanjutnya
                         </span>
@@ -50,57 +68,35 @@
                 </div>
             </div>
         </div>
-        <div class="row setup-content px-5 {{ $currentStep != 2 ? 'displayNone' : '' }}" id="step-2">
-            <div class="col-xs-12 mt-3">
-                <div class="col-md-12">
-                    @include('livewire.frontend.data_diri')
-                    <div class="d-flex mt-4">
-                        <button class="btn btn-danger nextBtn pull-right my-0 me-3" type="button" wire:click="back(1)">
-                            <i class="fa-solid fa-arrow-left me-2"></i>
-                            <span>Sebelumnya</span>
-                        </button>
-                        <button
-                            class="btn btn-primary-next nextBtn pull-right d-flex justify-content-center align-items-center"
-                            type="button" wire:click="secondStepSubmit">
-                            <span>
-                                Selanjutnya
-                            </span>
-                            <i class="fa-solid fa-arrow-right mt-1 ms-2"></i>
-                        </button>
+    </div>
+    <div class="row setup-content px-5 {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
+        <div class="col-xs-12">
+            <div class="col-md-12">
+                <div class="d-flex paper-plane flex-column justify-content-center align-items-center mt-5">
+                    <div class="" style="height: 80px; width: 80px;">
+                        <img src="{{ asset('asseets/images/paper-plane.png') }}" class="h-100 w-100" alt="">
+                    </div>
+
+                    <p class="first-color">Data Anda Telah Berhasil Terkirim</p>
+
+                    <div class="d-flex flex-column justify-content-ceenter align-items-center mt-4">
+                        <h3 class="text-secondary">Terima Kasih</h3>
+                        <p class="second-color">Atas Partisipasinya</p>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row setup-content px-5 {{ $currentStep != 3 ? 'displayNone' : '' }}" id="step-3">
-            <div class="col-xs-12">
-                <div class="col-md-12">
-                    <div class="d-flex paper-plane flex-column justify-content-center align-items-center mt-5">
-                        <div class="" style="height: 80px; width: 80px;">
-                            <img src="{{ asset('asseets/images/paper-plane.png') }}" class="h-100 w-100" alt="">
-                        </div>
-
-                        <p class="first-color">Data Anda Telah Berhasil Terkirim</p>
-
-                        <div class="d-flex flex-column justify-content-ceenter align-items-center mt-4">
-                            <h3 class="text-secondary">Terima Kasih</h3>
-                            <p class="second-color">Atas Partisipasinya</p>
-                        </div>
-                    </div>
 
 
 
-                    <div class="d-flex mt-5 justify-content-center">
-                        <button class="btn btn-primary-next d-flex nextBtn pull-right" type="button"
-                            wire:click="back(1)">
-                            <span>Kembali</span>
-                            <i class="fa-solid fa-arrow-right ms-2 mt-1"></i>
-                        </button>
-                        {{-- <button class="btn btn-primary-next d-flex justify-content-center align-items-center"
-                            wire:click="submitForm" type="button">
-                            <i class="fa-solid fa-save me-2"></i>
-                            <span>Simpan</span>
-                        </button> --}}
-                    </div>
+                <div class="d-flex mt-5 justify-content-center">
+                    <button class="btn btn-primary-next d-flex nextBtn pull-right" type="button" wire:click="back(1)">
+                        <span>Kembali</span>
+                        <i class="fa-solid fa-arrow-right ms-2 mt-1"></i>
+                    </button>
+                    {{-- <button class="btn btn-primary-next d-flex justify-content-center align-items-center"
+                        wire:click="submitForm" type="button">
+                        <i class="fa-solid fa-save me-2"></i>
+                        <span>Simpan</span>
+                    </button> --}}
                 </div>
             </div>
         </div>
