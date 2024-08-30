@@ -7,8 +7,9 @@
         width: 100%
     }
     @media(max-width : 600px){
-        .container{
+        #question{
             padding: 0;
+            /* overflow-x: hidden; */
         }
 
         .card-body{

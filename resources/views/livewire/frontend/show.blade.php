@@ -11,7 +11,7 @@
         @endif
         <div class="stepwizard">
             <div class="stepwizard-row setup-panel row">
-                <div class="stepwizard-step col-2">
+                <div class="stepwizard-step col-4">
                     <a href="#step-1" type="button"
                         class="btn btn-circle {{ $currentStep != 1 ? 'btn-secondary-fill' : 'btn-primary-fill' }}">1</a>
                     <p>Isi Formulir</p>
@@ -21,7 +21,7 @@
                         class="btn btn-circle {{ $currentStep != 2 ? 'btn-secondary-fill' : 'btn-primary-fill' }}">2</a>
                     <p>Data Responden</p>
                 </div>
-                <div class="stepwizard-step col-2">
+                <div class="stepwizard-step col-4">
                     <a href="#step-3" type="button"
                         class="btn btn-circle {{ $currentStep != 3 ? 'btn-secondary-fill' : 'btn-primary-fill' }}"
                         disabled="disabled">3</a>
